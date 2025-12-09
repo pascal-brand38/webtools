@@ -61,6 +61,13 @@ function getArgs(argv) {
         required: false,
         boolean: true,
       },
+      "validate": {
+        description: "final validation",
+        default: true,
+        requiresArg: false,
+        required: false,
+        boolean: true,
+      },
     })
     .argv;
 }
@@ -71,6 +78,7 @@ async function initTask() {
   args.dbg = options['dbg']
   args.w3c = options['w3c']
   args.locals = options['locals']
+  args.validate = options['validate']
 
   if (options._.length != 0) {
     getArgs([process.argv[0], process.argv[1], '--help'])   // show the help
@@ -109,13 +117,14 @@ const buildLocalsTask = async (cb) => {
   }
 }
 
+const nop = (cb) => cb()
 const buildHtmlTask = (cb) => buildHtml(args, cb)
 const buildCssTask = (cb) => buildCss(args, cb)
 const buildJsTask = (cb) => buildJs(args, cb)
 const build3rdPartiesTask = (cb) => build3rdParties(args, cb)
 const buildRootDirTask = (cb) => buildRootDir(args, cb)
 const buildPhpTask = (cb) => buildPhp(args, cb)
-const buildValidateTask = (cb) => buildValidate(args, cb)
+const buildValidateTask = (cb) => (args.validate ? buildValidate(args, cb) : nop(cb))
 
 ///////////////////////// Tasks
 // run helloworld task using:  gulp helloworld
