@@ -5,8 +5,10 @@
 # Installation
 
 ```
-npm install
+npm ci
 ```
+
+```npm ci``` installs versions according to ```package-lock.json```
 
 This will install
 * ```npm install yargs```: read commandline arguments
