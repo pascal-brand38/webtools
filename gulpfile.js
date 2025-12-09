@@ -68,6 +68,13 @@ function getArgs(argv) {
         required: false,
         boolean: true,
       },
+      "parallel": {
+        description: "parallel build, as much as possible",
+        default: true,
+        requiresArg: false,
+        required: false,
+        boolean: true,
+      },
     })
     .argv;
 }
@@ -79,6 +86,7 @@ async function initTask() {
   args.w3c = options['w3c']
   args.locals = options['locals']
   args.validate = options['validate']
+  args.parallel = options['parallel']
 
   if (options._.length != 0) {
     getArgs([process.argv[0], process.argv[1], '--help'])   // show the help
@@ -126,14 +134,17 @@ const buildRootDirTask = (cb) => buildRootDir(args, cb)
 const buildPhpTask = (cb) => buildPhp(args, cb)
 const buildValidateTask = (cb) => (args.validate ? buildValidate(args, cb) : nop(cb))
 
+const sequenceProcess = (args.parallel ? parallel : series)
+
+
 ///////////////////////// Tasks
 // run helloworld task using:  gulp helloworld
 exports.helloworld = helloworldTask
 
 exports.default = series(
-  parallel(initTask),
+  sequenceProcess(initTask),
   buildLocalsTask,
-  parallel(buildCssTask, buildJsTask, build3rdPartiesTask, buildPhpTask, buildRootDirTask),
+  sequenceProcess(buildCssTask, buildJsTask, build3rdPartiesTask, buildPhpTask, buildRootDirTask),
   buildHtmlTask,
   buildValidateTask,
 )
