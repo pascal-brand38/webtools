@@ -44,10 +44,10 @@ img {
 
 :root {
   -webkit-text-size-adjust: 100%;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: $webtools-root-font-size;
+  font-weight: $webtools-root-font-weight;
   font-family: $webtools-primary-font-family;
-  line-height: 1.5;
+  line-height: $webtools-root-line-height;
   color: $webtools-primary-color;
   background-color: $webtools-primary-background-color;
 }
@@ -55,9 +55,7 @@ img {
 body {
   padding: 0;
   margin: 0;
-  font-size: 1.1rem;    /* read to know the difference of em vs rem: https://grafikart.fr/tutoriels/font-size-rem-em-px-477 */
-                        /* rem is a percentage of the root font size */
-                        /* em is a percentage of the parent font size */
+  font-size: $webtools-body-font-size;
 }
 
 // https://github.com/necolas/normalize.css
