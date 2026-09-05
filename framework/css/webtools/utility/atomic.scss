@@ -36,6 +36,10 @@ strong { font-weight: bold; }
   content: attr(data-a) attr(data-b) attr(data-c) attr(data-d) attr(data-e) ;
 }
 
+.webtools-concat-attr-05-space::before {
+  content: attr(data-a) "\00a0" attr(data-b) "\00a0" attr(data-c) "\00a0" attr(data-d) "\00a0" attr(data-e) ;
+}
+
 
 // Hide some parts of the html file
 @media only screen and (max-width: 512px) {
