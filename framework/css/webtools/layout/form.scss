@@ -4,7 +4,7 @@
  *****************************************************************/
 
 form.webtools {
-  font-size: 1.21rem;
+  font-size: $webtools-form-font-size;
 
   input, textarea {
     // redefine the background color as the UA of the browser may set it to white
@@ -14,7 +14,7 @@ form.webtools {
 
   .webtools-one-form {
     position:relative;
-    margin-bottom:2.42rem;                /* margin between 2 inputs */
+    margin-bottom: $webtools-form-margin-bottom; /* margin between 2 inputs */
     margin-left: 12ch;                    /* margin of 12 characters to shift "Téléphone" */
                                           /* check the "left" property in input:focus ~label */
     @media only screen and (max-width: $webtools-size-s-to) {
@@ -28,7 +28,7 @@ form.webtools {
 
   input {
     display: block;
-    padding-bottom: 0.605rem;             /* space between the text and the border-bottom */
+    padding-bottom: $webtools-form-padding-bottom; /* space between the text and the border-bottom */
     outline:none;                         /* not to have a frame around the input */
     border:none;                          /* not to have a frame around the input */
     border-bottom:1px solid $webtools-secondary-color;      /* 1px width border */
@@ -45,7 +45,7 @@ form.webtools {
   textarea {
     display: block;
     width: 100%;
-    height: 12.1rem;
+    height: $webtools-form-textarea-height;  /* height of the textarea */
     outline:none;                         /* not to have a frame around the input */
     border: 1px solid $webtools-secondary-color;            /* 1px width border */
   }
